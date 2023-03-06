@@ -12,6 +12,7 @@ import AnyCodable
 
 public struct ProductPreview: Codable, JSONEncodable, Hashable {
 
+    static let caloriesRule = NumericRule<Int>(minimum: 0, exclusiveMinimum: false, maximum: nil, exclusiveMaximum: false, multipleOf: nil)
     public var id: UUID
     public var names: [LocalizedValue]
     public var brands: [LocalizedValue]?

@@ -12,6 +12,8 @@ import AnyCodable
 
 public struct Proteins: Codable, JSONEncodable, Hashable {
 
+    static let caseinRule = NumericRule<Double>(minimum: 0, exclusiveMinimum: false, maximum: nil, exclusiveMaximum: false, multipleOf: nil)
+    static let serumProteinsRule = NumericRule<Double>(minimum: 0, exclusiveMinimum: false, maximum: nil, exclusiveMaximum: false, multipleOf: nil)
     /** Casein measured in gram */
     public var casein: Double?
     /** Serum proteins measured in gram */

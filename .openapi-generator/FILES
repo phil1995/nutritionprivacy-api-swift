@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .swiftformat
 Cartfile
 NutritionPrivacyAPIClient.podspec
@@ -30,6 +29,7 @@ Sources/NutritionPrivacyAPIClient/Models/Vitamins.swift
 Sources/NutritionPrivacyAPIClient/OpenISO8601DateFormatter.swift
 Sources/NutritionPrivacyAPIClient/SynchronizedDictionary.swift
 Sources/NutritionPrivacyAPIClient/URLSessionImplementations.swift
+Sources/NutritionPrivacyAPIClient/Validation.swift
 docs/Carbohydrates.md
 docs/Fats.md
 docs/LocalizedValue.md

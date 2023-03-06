@@ -11,5 +11,5 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/OpenAPITools/openapi-generator'
   s.summary = 'NutritionPrivacyAPIClient Swift SDK'
   s.source_files = 'Sources/NutritionPrivacyAPIClient/**/*.swift'
-  s.dependency 'AnyCodable-FlightSchool', '~> 0.6.1'
+  s.dependency 'AnyCodable-FlightSchool', '~> 0.6'
 end

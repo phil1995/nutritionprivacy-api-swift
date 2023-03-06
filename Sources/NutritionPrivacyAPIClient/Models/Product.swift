@@ -12,6 +12,7 @@ import AnyCodable
 
 public struct Product: Codable, JSONEncodable, Hashable {
 
+    static let barcodeRule = NumericRule<Int>(minimum: 0, exclusiveMinimum: false, maximum: nil, exclusiveMaximum: false, multipleOf: nil)
     public var id: UUID
     /** Barcode of the Product */
     public var barcode: Int?

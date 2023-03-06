@@ -20,28 +20,7 @@ open class ProductAPI {
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func addProduct(product: Product? = nil) async throws {
-        let requestBuilder = addProductWithRequestBuilder(product: product)
-        let requestTask = requestBuilder.requestTask
-        return try await withTaskCancellationHandler {
-            try Task.checkCancellation()
-            return try await withCheckedThrowingContinuation { continuation in
-                guard !Task.isCancelled else {
-                  continuation.resume(throwing: CancellationError())
-                  return
-                }
-
-                requestBuilder.execute { result in
-                    switch result {
-                    case .success:
-                        continuation.resume(returning: ())
-                    case let .failure(error):
-                        continuation.resume(throwing: error)
-                    }
-                }
-            }
-        } onCancel: {
-            requestTask.cancel()
-        }
+        return try await addProductWithRequestBuilder(product: product).execute().body
     }
 
     /**
@@ -75,28 +54,7 @@ open class ProductAPI {
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func getAllProducts() async throws -> String {
-        let requestBuilder = getAllProductsWithRequestBuilder()
-        let requestTask = requestBuilder.requestTask
-        return try await withTaskCancellationHandler {
-            try Task.checkCancellation()
-            return try await withCheckedThrowingContinuation { continuation in
-                guard !Task.isCancelled else {
-                  continuation.resume(throwing: CancellationError())
-                  return
-                }
-
-                requestBuilder.execute { result in
-                    switch result {
-                    case let .success(response):
-                        continuation.resume(returning: response.body)
-                    case let .failure(error):
-                        continuation.resume(throwing: error)
-                    }
-                }
-            }
-        } onCancel: {
-            requestTask.cancel()
-        }
+        return try await getAllProductsWithRequestBuilder().execute().body
     }
 
     /**
@@ -130,28 +88,7 @@ open class ProductAPI {
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func getProductByID(productID: UUID) async throws -> Product {
-        let requestBuilder = getProductByIDWithRequestBuilder(productID: productID)
-        let requestTask = requestBuilder.requestTask
-        return try await withTaskCancellationHandler {
-            try Task.checkCancellation()
-            return try await withCheckedThrowingContinuation { continuation in
-                guard !Task.isCancelled else {
-                  continuation.resume(throwing: CancellationError())
-                  return
-                }
-
-                requestBuilder.execute { result in
-                    switch result {
-                    case let .success(response):
-                        continuation.resume(returning: response.body)
-                    case let .failure(error):
-                        continuation.resume(throwing: error)
-                    }
-                }
-            }
-        } onCancel: {
-            requestTask.cancel()
-        }
+        return try await getProductByIDWithRequestBuilder(productID: productID).execute().body
     }
 
     /**
@@ -191,28 +128,7 @@ open class ProductAPI {
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func searchByText(text: String, page: Int? = nil) async throws -> ProductsSearchResponse {
-        let requestBuilder = searchByTextWithRequestBuilder(text: text, page: page)
-        let requestTask = requestBuilder.requestTask
-        return try await withTaskCancellationHandler {
-            try Task.checkCancellation()
-            return try await withCheckedThrowingContinuation { continuation in
-                guard !Task.isCancelled else {
-                  continuation.resume(throwing: CancellationError())
-                  return
-                }
-
-                requestBuilder.execute { result in
-                    switch result {
-                    case let .success(response):
-                        continuation.resume(returning: response.body)
-                    case let .failure(error):
-                        continuation.resume(throwing: error)
-                    }
-                }
-            }
-        } onCancel: {
-            requestTask.cancel()
-        }
+        return try await searchByTextWithRequestBuilder(text: text, page: page).execute().body
     }
 
     /**
